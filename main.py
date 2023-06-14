@@ -1,0 +1,22 @@
+import dataStructures
+list1 = dataStructures.linkedlist.DoubleLinkedlist()
+list1.addAtBegin(3)
+list1.addAtBegin(2)
+list1.addAtBegin(1)
+list1.addAtLast(6)
+list1.addAtLast(7)
+list1.addAtLast(8)
+list1.deleteAtLast()
+list1.deleteAtBegin()
+print(list1.rfind(6))
+list1.traversal()
+
+
+bst = dataStructures.bst.BST(10)
+bst.insert(9)
+bst.insert(8)
+bst.insert(11)
+bst.insert(12)
+bst.insert(6)
+bst.insert(20)
+bst.traversal()
