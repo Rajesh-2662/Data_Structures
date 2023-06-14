@@ -18,7 +18,7 @@ class SingleLinkedList:
     def addAtBegin(self,data):
         new_node = self.Node(data)
         if self.isEmpty():
-            self.__head = self.tail = new_node
+            self.__head = self.__tail = new_node
         else:
             new_node.next = self.__head
             self.__head = new_node
@@ -27,10 +27,10 @@ class SingleLinkedList:
     def addAtLast(self,data):
         new_node = self.Node(data)
         if self.isEmpty():
-            self.__head = self.tail = new_node
+            self.__head = self.__tail = new_node
         else:
-            self.tail.next = new_node
-            self.tail = new_node
+            self.__tail.next = new_node
+            self.__tail = new_node
 
 
     def deleteAtBegin(self):
@@ -51,7 +51,7 @@ class SingleLinkedList:
                 while(current.next.next is not None):
                     current = current.next
                 current.next = None
-                self.tail = current
+                self.__tail = current
 
 
     def find(self,data):
@@ -63,6 +63,37 @@ class SingleLinkedList:
             current = current.next
             index += 1
         return -1
+
+    def insertBefore(self,data,key):
+        new_node = self.Node(data)
+        if self.isEmpty():
+            self.__head = self.__tail = new_node
+        else:
+            current = self.__head
+            if current.data == key:
+                self.addAtBegin(data)
+                return
+            while(current.next is not None):
+                if current.next.data == key:
+                    break
+                current = current.next
+            new_node.next = current.next
+            current.next = new_node
+
+    def insertAfter(self,data,key):
+        new_node = self.Node(data)
+        if self.isEmpty():
+            self.__head = self.__tail = new_node
+        current = self.__head
+        while(current is not None):
+            if current.data == key:
+                break
+            current = current.next
+        if current.next == None:
+            self.addAtLast(data)
+        else:
+            new_node.next = current.next
+            current.next = new_node
 
     def exists(self,data):
         return self.find(data) != -1
@@ -84,8 +115,8 @@ class SingleLinkedList:
 
 class DoubleLinkedlist:
     def __init__(self):
-        self.head = None
-        self.tail = None
+        self.__head = None
+        self.__tail = None
 
     class Node:
 
@@ -100,38 +131,38 @@ class DoubleLinkedlist:
     def addAtBegin(self,data):
         new_node = self.Node(data)
         if self.isEmpty():
-            self.head = self.tail = new_node
+            self.__head = self.__tail = new_node
         else:
-            self.head.prev = new_node
-            new_node.next = self.head
-            self.head = new_node
+            self.__head.prev = new_node
+            new_node.next = self.__head
+            self.__head = new_node
 
     def addAtLast(self,data):
         new_node = self.Node(data)
         if self.isEmpty():
-            self.head = self.tail = new_node
+            self.__head = self.__tail = new_node
         else:
-            self.tail.next = new_node
-            new_node.prev = self.tail
-            self.tail = new_node
+            self.__tail.next = new_node
+            new_node.prev = self.__tail
+            self.__tail = new_node
 
     def deleteAtBegin(self):
         if self.isEmpty():
             print("There is nothing here :)")
         else:
-            self.head = self.head.next
-            self.head.prev = None
+            self.__head = self.__head.next
+            self.__head.prev = None
 
     def deleteAtLast(self):
         if self.isEmpty():
             print("There is Nothing here :)")
         else:
-            self.tail = self.tail.prev
-            self.tail.next = None
+            self.__tail = self.__tail.prev
+            self.__tail.next = None
 
     def find(self,data):
         index = 0
-        current = self.head
+        current = self.__head
         while(current is not None):
             if current.data == data:
                 return index
@@ -141,7 +172,7 @@ class DoubleLinkedlist:
 
     def rfind(self,data):
         index = 0
-        current = self.tail
+        current = self.__tail
         while(current is not None):
             if current.data == data:
                 return index
@@ -149,22 +180,53 @@ class DoubleLinkedlist:
             index += 1
         return -1
 
+    def insertBefore(self,data,key):
+        new_node = self.Node(data)
+        if self.isEmpty():
+            self.__head = self.__tail = new_node
+        else:
+            current = self.__head
+            if current.data == key:
+                self.addAtBegin(data)
+                return
+            while (current.next is not None):
+                if current.next.data == key:
+                    break
+                current = current.next
+            new_node.next = current.next
+            current.next = new_node
+
+    def insertAfter(self,data,key):
+        new_node = self.Node(data)
+        if self.isEmpty():
+            self.__head = self.__tail = new_node
+        current = self.__head
+        while(current is not None):
+            if current.data == key:
+                break
+            current = current.next
+        if current.next == None:
+            self.addAtLast(data)
+        else:
+            new_node.next = current.next
+            current.next = new_node
+
     def exists(self,data):
         return self.find(data) != -1
 
     def traversal(self,reverse=False):
         if reverse:
-            current = self.tail
+            current = self.__tail
             while(current is not None):
                 print(current.data,end = '<--')
                 current = current.prev
 
         else:
-            current = self.head
+            current = self.__head
             while(current is not None):
                 print(current.data,end = '-->')
                 current = current.next
         print()
 
     def isEmpty(self):
-        return self.head is None
+        return self.__head is None

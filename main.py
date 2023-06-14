@@ -6,9 +6,7 @@ list1.addAtBegin(1)
 list1.addAtLast(6)
 list1.addAtLast(7)
 list1.addAtLast(8)
-list1.deleteAtLast()
-list1.deleteAtBegin()
-print(list1.rfind(6))
+list1.insertBefore(0,1)
 list1.traversal()
 
 
