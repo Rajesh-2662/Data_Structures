@@ -50,4 +50,4 @@ To use the Linked List, Double Linked List, and Binary Search Tree implementatio
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/rajesh_2662/datastructures.git
+   git clone https://github.com/Rajesh-2662/Data_Structures.git
